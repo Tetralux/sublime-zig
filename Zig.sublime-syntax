@@ -1,0 +1,100 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Zig
+file_extensions:
+  - zig
+first_line_match: "-[*]-( Mode:)? zig -[*]-"
+scope: source.zig
+variables:
+  identifier: '\b[[:alpha:]_][[:alnum:]_]*\b'
+  type_chars: '[[:alnum:]\s,._^<>\[\]-]'
+  screaming_identifier: '\b[A-Z_](?![a-z])[A-Z_0-9]+\b'
+
+contexts:
+  main:
+    - include: global
+
+  global:
+    - include: comments
+    - include: function-call
+    - include: types
+    - include: numbers
+    - include: constants
+    - include: keywords
+    - include: operators
+    # - include: custom_styling
+    - include: strings
+    - include: string-escaped-char
+
+  comments:
+    - include: block-comment
+    - match: //
+      scope: punctuation.definition.comment.odin
+      push:
+        - meta_scope: comment.line.double-slash.odin
+        - match: \n
+          pop: true
+    - match: "#!"
+      scope: punctuation.definition.comment.odin
+      push:
+        - meta_scope: comment.line.double-slash.odin
+        - match: \n
+          pop: true
+
+  block-comment:
+    - match: /\*
+      scope: punctuation.definition.comment.odin
+      push:
+        - meta_scope: comment.block.odin
+        - match: \*/
+          scope: punctuation.definition.comment.odin
+          pop: true
+        - include: block-comment
+
+  numbers:
+    - match: \b([0-9][0-9]*)(\.([0-9][0-9]*))?\b
+      scope: constant.numeric.zig
+    - match: \b(0x[0-9a-fA-F]+)\b
+      scope: constant.numeric.zig
+
+  keywords:
+    - match: (error)(\.)({{identifier}})
+      captures:
+        "1": storage.type.zig
+        # "3": entity.name.variable.zig
+    - match: (continue|break|switch|for|while|var|const|extern|export|pub|try|catch|unreachable|error|if|else|return|async|await|defer|cancel|inline|noinline)
+      scope: keyword.control.zig
+    - match: (fn|struct|enum)
+      scope: storage.type.zig
+    - match: (c_int|c_uint|c_short|c_ushort|c_long|c_ulong)
+      scope: storage.type.zig
+    - match: (void)
+      scope: storage.type.zig
+    - match: (@{{identifier}})
+      scope: support.function.zig
+
+  function-call:
+    - match: (fn)\s+({{identifier}})\s*\(
+      captures:
+        "1": storage.type.zig
+        "2": entity.name.function.zig
+
+  constants:
+    - match: (true|false|null)
+      scope: constant.language.zig
+    - match: (const)\s*({{identifier}})\s*(=)
+      captures:
+        "1": keyword.control.zig
+        "2": meta.constant.zig entity.name.type.zig
+        "3": keyword.operator.zig
+
+  operators:
+    - match: (\*|\+|-|/|%|\?|!|:|\||=>|=|&)
+      scope: keyword.operator.zig
+
+  types:
+    - match: (usize|isize)
+      scope: storage.type.zig
+    - match: (u|i)[0-9]+
+      scope: storage.type.zig
