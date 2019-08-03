@@ -23,7 +23,6 @@ contexts:
     - include: constants
     - include: keywords
     - include: operators
-    # - include: custom_styling
     - include: strings
     - include: string-escaped-char
 
@@ -98,3 +97,34 @@ contexts:
       scope: storage.type.zig
     - match: (u|i)[0-9]+
       scope: storage.type.zig
+
+  strings:
+    - match: '"'
+      scope: punctuation.definition.string.begin.odin
+      push:
+        - meta_scope: string.quoted.double.odin
+        - match: '"'
+          scope: punctuation.definition.string.end.odin
+          pop: true
+        - include: string-escaped-char
+    - match: "`"
+      scope: punctuation.definition.string.begin.odin
+      push:
+        - meta_scope: string.quoted.raw.odin
+        - match: "`"
+          scope: punctuation.definition.string.end.odin
+          pop: true
+    - match: "'"
+      scope: punctuation.definition.string.begin.odin
+      push:
+        - meta_scope: string.quoted.raw.odin
+        - match: "'"
+          scope: punctuation.definition.string.end.odin
+          pop: true
+        - include: string-escaped-char
+
+  string-escaped-char:
+    - match: '\\(\\|[abefnrutv''"]|x\h{2}|u\h{4}|U\h{8}|[0-7]{3})'
+      scope: constant.character.escape.odin
+    - match: \\.
+      scope: invalid.illegal.unknown-escape.odin
