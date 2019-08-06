@@ -52,7 +52,7 @@ contexts:
         - include: block-comment
 
   numbers:
-    - match: \b([0-9][0-9]*)(\.([0-9][0-9]*))?\b
+    - match: \b([0-9][0-9]*)(\.([0-9][0-9]*))?([Ee](\+|-)?[0-9]+)?\b
       scope: constant.numeric.zig
     - match: \b(0x[0-9a-fA-F]+)\b
       scope: constant.numeric.zig
@@ -62,7 +62,7 @@ contexts:
       captures:
         "1": storage.type.zig
         # "3": entity.name.variable.zig
-    - match: (continue|break|switch|for|while|var|const|extern|export|pub|try|catch|unreachable|error|if|else|return|async|await|defer|cancel|inline|noinline)
+    - match: (continue|break|switch|for|while|var|const|extern|export|pub|try|catch|unreachable|error|if|else|return|async|await|defer|cancel|inline|noinline|undefined|comptime|type)\b
       scope: keyword.control.zig
     - match: (fn|struct|enum)
       scope: storage.type.zig
@@ -90,13 +90,17 @@ contexts:
         "4": keyword.control.zig
 
   operators:
-    - match: (\*|\+|-|/|%|\?|!|:|\||=>|=|&)
+    - match: (%(\+|-|\*\/)=)|->
+      scope: invalid.zig
+    - match: (\*|\+|-|/|%|\?|!|:|\||=>|=|&|\<|\>)
       scope: keyword.operator.zig
 
   types:
     - match: (usize|isize)
       scope: storage.type.zig
     - match: (u|i)[0-9]+
+      scope: storage.type.zig
+    - match: (f(32|64))
       scope: storage.type.zig
 
   strings:
