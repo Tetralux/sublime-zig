@@ -92,7 +92,7 @@ contexts:
   operators:
     - match: (%(\+|-|\*\/)=)|->
       scope: invalid.zig
-    - match: (\*|\+|-|/|%|\?|!|:|\||=>|=|&|\<|\>)
+    - match: (\*|\+|-|/|%|\?|!|:|\||=>|=|&|\<|\>|\.\.)
       scope: keyword.operator.zig
 
   types:
