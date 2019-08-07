@@ -1,6 +1,11 @@
 %YAML 1.2
 ---
 # http://www.sublimetext.com/docs/3/syntax.html
+#
+#  TODO:
+#
+#  - '||' is invalid unless there are errors on both sides.
+#
 name: Zig
 file_extensions:
   - zig
@@ -58,15 +63,19 @@ contexts:
       scope: constant.numeric.zig
 
   keywords:
-    - match: (error)(\.)({{identifier}})
+    - match: \b(error)(\.)({{identifier}})(\s*(\|\|)\s*(error)\.({{identifier}}))?
       captures:
         "1": storage.type.zig
+        "5": keyword.operator.zig
+        "6": storage.type.zig
         # "3": entity.name.variable.zig
-    - match: (continue|break|switch|for|while)\b
+    - match: \b(continue|break|switch|for|while)\b
       scope: keyword.control.zig
-    - match: (var|const|extern|export|pub|async|await|defer|cancel|inline|noinline|align)
+    - match: \b(var|const|extern|export|pub|async|await|defer|cancel|inline|noinline|align)\b
       scope: keyword.control.zig
-    - match: (try|catch|unreachable|error|if|else|return)
+    - match: \b(try|catch|unreachable|error|if|else|return)\b
+      scope: keyword.control.zig
+    - match: \b(and|or)\b
       scope: keyword.control.zig
     - match: (undefined|comptime|type)
       scope: keyword.control.zig
@@ -96,7 +105,7 @@ contexts:
         "4": keyword.control.zig
 
   operators:
-    - match: (%(\+|-|\*\/)=)|->
+    - match: (%(\+|-|\*\/)=)|->|(\|\|)
       scope: invalid.zig
     - match: (\*|\+|-|/|%|\?|!|:|\||=>|=|&|\<|\>|\.\.)
       scope: keyword.operator.zig
