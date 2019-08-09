@@ -71,7 +71,7 @@ contexts:
         # "3": entity.name.variable.zig
     - match: \b(continue|break|switch|for|while)\b
       scope: keyword.control.zig
-    - match: \b(var|const|extern|export|pub|defer|inline|noinline|align)\b
+    - match: \b(var|const|test|extern|export|pub|defer|inline|noinline|align)\b
       scope: keyword.control.zig
     - match: \b(async|await|cancel|suspend|resume)\b
       scope: keyword.control.zig
@@ -81,7 +81,9 @@ contexts:
       scope: keyword.control.zig
     - match: \b(undefined|comptime|type)\b
       scope: keyword.control.zig
-    - match: \b(fn|struct|enum)\b
+    - match: \b(struct|enum|union)\b
+      scope: keyword.control.zig
+    - match: \b(fn)\b
       scope: storage.type.zig
     - match: \b(c_int|c_uint|c_short|c_ushort|c_long|c_ulong)\b
       scope: storage.type.zig
@@ -117,7 +119,7 @@ contexts:
       scope: keyword.operator.zig
 
   types:
-    - match: (usize|isize)
+    - match: (usize|isize|bool|comptime_int)
       scope: storage.type.zig
     - match: (u|i)[0-9]+
       scope: storage.type.zig
