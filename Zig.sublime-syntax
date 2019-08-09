@@ -71,25 +71,31 @@ contexts:
         # "3": entity.name.variable.zig
     - match: \b(continue|break|switch|for|while)\b
       scope: keyword.control.zig
-    - match: \b(var|const|extern|export|pub|async|await|defer|cancel|inline|noinline|align)\b
+    - match: \b(var|const|extern|export|pub|defer|inline|noinline|align)\b
+      scope: keyword.control.zig
+    - match: \b(async|await|cancel|suspend|resume)\b
       scope: keyword.control.zig
     - match: \b(try|catch|unreachable|error|if|else|return)\b
       scope: keyword.control.zig
     - match: \b(and|or)\b
       scope: keyword.control.zig
-    - match: (undefined|comptime|type)
+    - match: \b(undefined|comptime|type)\b
       scope: keyword.control.zig
-    - match: (fn|struct|enum)
+    - match: \b(fn|struct|enum)\b
       scope: storage.type.zig
-    - match: (c_int|c_uint|c_short|c_ushort|c_long|c_ulong)
+    - match: \b(c_int|c_uint|c_short|c_ushort|c_long|c_ulong)\b
       scope: storage.type.zig
-    - match: (void)
+    - match: \b(void)\b
       scope: storage.type.zig
     - match: (@{{identifier}})
       scope: support.function.zig
+    - match: \b(anyframe)((->)(?=({{identifier}}))?)\b
+      captures:
+        "1": keyword.control.zig
+        "3": keyword.operator.zig
 
   function-call:
-    - match: (fn)\s+({{identifier}})\s*\(
+    - match: \b(fn)\s+({{identifier}})\s*\(
       captures:
         "1": storage.type.zig
         "2": entity.name.function.zig
