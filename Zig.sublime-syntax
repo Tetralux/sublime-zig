@@ -63,11 +63,17 @@ contexts:
       scope: constant.numeric.zig
 
   keywords:
-    - match: \b(error)(\.)({{identifier}})(\s*(\|\|)\s*(error)\.({{identifier}}))?
+    - match: \b(error)(\.)({{identifier}})\s*(\|\|)\s*({{identifier}})\b
       captures:
         "1": storage.type.zig
-        "5": keyword.operator.zig
-        "6": storage.type.zig
+        "4": keyword.operator.zig
+    - match: \b({{identifier}})\s*(\|\|)\s*(error)\.({{identifier}})\b
+      captures:
+        "2": keyword.operator.zig
+        "3": storage.type.zig
+    - match: \b(error)\.({{identifier}})\b
+      captures:
+        "1": storage.type.zig
         # "3": entity.name.variable.zig
     - match: \b(continue|break|switch|for|while)\b
       scope: keyword.control.zig
