@@ -107,12 +107,15 @@ contexts:
   constants:
     - match: (true|false|null)
       scope: constant.language.zig
-    - match: (const)\s*({{identifier}})\s*(=)\s*({{identifier}})\s*\{
+    - match: (const)\s*({{identifier}})\s*(=)\s*({{identifier}})\s*((\(?)({{identifier}})(\)?))*\s*\{
       captures:
         "1": keyword.control.zig
         "2": meta.constant.zig entity.name.type.zig
         "3": keyword.operator.zig
         "4": keyword.control.zig
+        "6": source.zig
+        "7": keyword.control.zig
+        "8": source.zig
 
   operators:
     - match: (%(\+|-|\*\/)=)|->|(\|\|)|&&
