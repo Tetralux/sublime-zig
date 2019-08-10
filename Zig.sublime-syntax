@@ -75,8 +75,10 @@ contexts:
       scope: keyword.control.zig
     - match: \b(async|await|cancel|suspend|resume)\b
       scope: keyword.control.zig
-    - match: \b(try|catch|unreachable|error|if|else|return)\b
+    - match: \b(try|catch|orelse|unreachable|error|if|else|return)\b
       scope: keyword.control.zig
+    - match: \b(stdcallcc|ccc)\b
+      scope: keyword.type.zig
     - match: \b(and|or)\b
       scope: keyword.control.zig
     - match: \b(undefined|comptime|type)\b
