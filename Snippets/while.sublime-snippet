@@ -1,5 +1,5 @@
 <snippet>
-    <content>while ($1) : ($2) $3</content>
+    <content>while ($1) : ($2) {$3}</content>
     <tabTrigger>while</tabTrigger>
     <scope>source.zig</scope>
     <description>While statement</description>
