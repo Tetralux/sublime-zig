@@ -1,0 +1,6 @@
+<snippet>
+    <content>if ($1) $2</content>
+    <tabTrigger>if</tabTrigger>
+    <scope>source.zig</scope>
+    <description>If statement</description>
+</snippet>
