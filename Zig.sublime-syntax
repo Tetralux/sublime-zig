@@ -79,7 +79,16 @@ contexts:
       scope: keyword.type.zig
     - match: \b(and|or)\b
       scope: keyword.control.zig
-    - match: \b(undefined|comptime|type)\b
+    - match: \b(undefined|comptime)\b
+      scope: keyword.control.zig
+    - match: \.\s*(type)\b
+      captures:
+        "1": source.zig
+    - match: \b(type)\s*(:|=)
+      captures:
+        "1": source.zig
+        "2": keyword.operator.zig
+    - match: \b(type)\b
       scope: keyword.control.zig
     - match: \b(struct|enum|union)\b
       scope: keyword.control.zig
@@ -118,7 +127,7 @@ contexts:
   operators:
     - match: (%(\+|-|\*\/)=)|->|&&
       scope: invalid.zig
-    - match: (\*|\+|-|/|%|\?|!|:|\||=>|=|&|\<|\>|\.\.)
+    - match: (\*|\+|-|/|%|\?|!|:|\^|\||=>|=|&|\<|\>|\.\.\.?)
       scope: keyword.operator.zig
 
   types:
