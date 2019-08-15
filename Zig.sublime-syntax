@@ -139,7 +139,7 @@ contexts:
       scope: storage.type.zig
 
   strings:
-    - match: '"'
+    - match: '@?"'
       scope: punctuation.definition.string.begin.odin
       push:
         - meta_scope: string.quoted.double.odin
