@@ -81,10 +81,10 @@ contexts:
       scope: keyword.control.zig
     - match: \b(undefined|comptime)\b
       scope: keyword.control.zig
-    - match: \.\s*(type)\b
+    - match: \.\s*({{identifier}})\b
       captures:
         "1": source.zig
-    - match: \b(type)\s*(:|=)
+    - match: \b({{identifier}})\s*(:|=)
       captures:
         "1": source.zig
         "2": keyword.operator.zig
@@ -114,7 +114,7 @@ contexts:
   constants:
     - match: (true|false|null)
       scope: constant.language.zig
-    - match: (const)\s*({{identifier}})\s*(=)\s*({{identifier}})\s*((\(?)({{identifier}})(\)?))*\s*\{
+    - match: (const)\s*({{identifier}})\s*(=)\s*({{identifier}})\s*((\(?)({{identifier}})(\)?))*\s*\{(?!\s*\.)
       captures:
         "1": keyword.control.zig
         "2": meta.constant.zig entity.name.type.zig
