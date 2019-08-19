@@ -61,6 +61,8 @@ contexts:
       scope: constant.numeric.zig
     - match: \b(0x[0-9a-fA-F]+)\b
       scope: constant.numeric.zig
+    - match: \b(0b[01_]+)\b
+      scope: constant.numeric.zig
 
   keywords:
     - match: \b(error)\.({{identifier}})\b
