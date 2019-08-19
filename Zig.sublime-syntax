@@ -116,6 +116,13 @@ contexts:
   constants:
     - match: (true|false|null)
       scope: constant.language.zig
+    - match: (const)\s*({{identifier}})\s*(=)\s*(enum)\s*\(\s*({{identifier}})\s*\)\s*\{
+      captures:
+        "1": keyword.control.zig
+        "2": meta.constant.zig entity.name.type.zig
+        "3": keyword.operator.zig
+        "4": keyword.control.zig
+        "5": storage.type.zig
     - match: (const)\s*({{identifier}})\s*(=)\s*({{identifier}})\s*((\(?)({{identifier}})(\)?))*\s*\{(?!\s*\.)
       captures:
         "1": keyword.control.zig
@@ -123,7 +130,7 @@ contexts:
         "3": keyword.operator.zig
         "4": keyword.control.zig
         "6": source.zig
-        "7": keyword.control.zig
+        "7": keyword.type.zig
         "8": source.zig
 
   operators:
