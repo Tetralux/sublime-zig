@@ -71,7 +71,7 @@ contexts:
         # "3": entity.name.variable.zig
     - match: \b(continue|break|switch|for|while)\b
       scope: keyword.control.zig
-    - match: \b(var|const|test|extern|export|pub|defer|inline|noinline|align|usingnamespace)\b
+    - match: \b(var|const|test|extern|export|pub|defer|errdefer|inline|noinline|align|usingnamespace)\b
       scope: keyword.control.zig
     - match: \b(async|await|cancel|suspend|resume)\b
       scope: keyword.control.zig
