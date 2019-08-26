@@ -83,7 +83,7 @@ contexts:
       scope: keyword.control.zig
     - match: \b(undefined|comptime)\b
       scope: keyword.control.zig
-    - match: \b(void)\b
+    - match: \b(void|c_void)\b
       scope: storage.type.zig
     - match: \.\s*({{identifier}})\b
       captures:
