@@ -83,6 +83,8 @@ contexts:
       scope: keyword.control.zig
     - match: \b(undefined|comptime)\b
       scope: keyword.control.zig
+    - match: \b(void)\b
+      scope: storage.type.zig
     - match: \.\s*({{identifier}})\b
       captures:
         "1": source.zig
@@ -98,14 +100,16 @@ contexts:
       scope: storage.type.zig
     - match: \b(c_int|c_uint|c_short|c_ushort|c_long|c_ulong)\b
       scope: storage.type.zig
-    - match: \b(void)\b
-      scope: storage.type.zig
     - match: (@{{identifier}})
       scope: support.function.zig
     - match: \b(anyframe)((->)(?=({{identifier}}))?)\b
       captures:
         "1": keyword.control.zig
         "3": keyword.operator.zig
+    - match: \b(anyerror)(!)
+      captures:
+        "1": keyword.control.zig,
+        "2": keyword.operator.zig
 
   function-call:
     - match: \b(fn)\s+({{identifier}})\s*\(
