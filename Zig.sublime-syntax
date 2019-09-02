@@ -69,6 +69,8 @@ contexts:
       captures:
         "1": storage.type.zig
         # "3": entity.name.variable.zig
+    - match: \b(asm|volatile)\b
+      scope: keyword.control.zig
     - match: \b(continue|break|switch|for|while)\b
       scope: keyword.control.zig
     - match: \b(var|const|test|packed|extern|export|pub|defer|errdefer|inline|noinline|align|usingnamespace)\b
