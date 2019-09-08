@@ -77,9 +77,13 @@ contexts:
       scope: keyword.control.zig
     - match: \b(async|await|cancel|suspend|resume)\b
       scope: keyword.control.zig
+    - match: \b(threadlocal)\b
+      scope: keyword.control.zig
+    - match: \b(linksection)\b
+      scope: keyword.control.zig
     - match: \b(try|catch|orelse|unreachable|error|if|else|return)\b
       scope: keyword.control.zig
-    - match: \b(stdcallcc|ccc)\b
+    - match: \b(stdcallcc|ccc|nakedcc)\b
       scope: keyword.type.zig
     - match: \b(and|or)\b
       scope: keyword.control.zig
