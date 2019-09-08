@@ -120,7 +120,7 @@ contexts:
         "2": entity.name.function.zig
 
   constants:
-    - match: (true|false|null)
+    - match: \b(true|false|null)\b
       scope: constant.language.zig
     - match: (const)\s*({{identifier}})\s*(=)\s*(enum)\s*(\(\s*({{identifier}})\))?\s*\{
       captures:
