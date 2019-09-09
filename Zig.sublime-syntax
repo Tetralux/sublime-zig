@@ -22,10 +22,10 @@ contexts:
 
   global:
     - include: comments
+    - include: types
     - include: keywords
     - include: function-definition
     - include: function-call
-    - include: types
     - include: numbers
     - include: constants
     - include: operators
