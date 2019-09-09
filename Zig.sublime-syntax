@@ -22,11 +22,12 @@ contexts:
 
   global:
     - include: comments
+    - include: keywords
+    - include: function-definition
     - include: function-call
     - include: types
     - include: numbers
     - include: constants
-    - include: keywords
     - include: operators
     - include: strings
     - include: string-escaped-char
@@ -91,7 +92,7 @@ contexts:
       scope: keyword.control.zig
     - match: \b(void|c_void)\b
       scope: storage.type.zig
-    - match: \.\s*({{identifier}})\b
+    - match: \.\s*({{identifier}})(?=!\()
       captures:
         "1": source.zig
     - match: \b({{identifier}})\s*(:|=)
@@ -118,10 +119,13 @@ contexts:
         "2": keyword.operator.zig
 
   function-call:
-    - match: \b(fn)\s+({{identifier}})\s*\(
-      captures:
-        "1": storage.type.zig
-        "2": entity.name.function.zig
+    - match: ({{identifier}})\s*(?=\()
+      scope: meta.function-call.zig
+
+  function-definition:
+    - match: \b(?<=fn)\s+({{identifier}})\s*(?=\()
+      scope: entity.name.function.zig
+
 
   constants:
     - match: \b(true|false|null)\b
@@ -145,7 +149,7 @@ contexts:
 
   operators:
     - match: (%(\+|-|\*\/)=)|->|&&
-      scope: invalid.zig
+      scope: invalid.illegal.zig
     - match: (\*|\+|-|/|%|\?|!|:|\^|\||=>|=|&|\<|\>|\.\.\.?)
       scope: keyword.operator.zig
 
