@@ -75,7 +75,7 @@ contexts:
       scope: keyword.control.zig
     - match: \b(var|const|test|packed|extern|export|pub|defer|errdefer|inline|noinline|align|usingnamespace)\b
       scope: keyword.control.zig
-    - match: \b(async|await|cancel|suspend|resume)\b
+    - match: \b(noasync|async|await|cancel|suspend|resume)\b
       scope: keyword.control.zig
     - match: \b(threadlocal)\b
       scope: keyword.control.zig
