@@ -99,7 +99,7 @@ contexts:
       captures:
         "1": source.zig
         "2": keyword.operator.zig
-    - match: \b(type)\b
+    - match: (?<!\.)\b(type)\b
       scope: keyword.control.zig
     - match: \b(struct|enum|union)\b
       scope: keyword.control.zig
