@@ -82,14 +82,14 @@ contexts:
       scope: keyword.control.zig
     - match: \b(linksection)\b
       scope: keyword.control.zig
-    - match: \b(try|catch|orelse|unreachable|error|if|else|return)\b
+    - match: \b(try|catch|orelse|unreachable|error|if|else|return|comptime)\b
       scope: keyword.control.zig
     - match: \b(stdcallcc|ccc|nakedcc)\b
       scope: keyword.type.zig
     - match: \b(and|or)\b
       scope: keyword.control.zig
-    - match: \b(undefined|comptime)\b
-      scope: keyword.control.zig
+    - match: \b(undefined)\b
+      scope: constant.language.zig
     - match: \b(void|c_void)\b
       scope: storage.type.zig
     - match: \.\s*({{identifier}})(?=!\()
@@ -163,31 +163,31 @@ contexts:
 
   strings:
     - match: '@?"'
-      scope: punctuation.definition.string.begin.odin
+      scope: punctuation.definition.string.begin.zig
       push:
-        - meta_scope: string.quoted.double.odin
+        - meta_scope: string.quoted.double.zig
         - match: '"'
-          scope: punctuation.definition.string.end.odin
+          scope: punctuation.definition.string.end.zig
           pop: true
         - include: string-escaped-char
     - match: "`"
-      scope: punctuation.definition.string.begin.odin
+      scope: punctuation.definition.string.begin.zig
       push:
-        - meta_scope: string.quoted.raw.odin
+        - meta_scope: string.quoted.raw.zig
         - match: "`"
-          scope: punctuation.definition.string.end.odin
+          scope: punctuation.definition.string.end.zig
           pop: true
     - match: "'"
-      scope: punctuation.definition.string.begin.odin
+      scope: punctuation.definition.string.begin.zig
       push:
-        - meta_scope: string.quoted.raw.odin
+        - meta_scope: string.quoted.raw.zig
         - match: "'"
-          scope: punctuation.definition.string.end.odin
+          scope: punctuation.definition.string.end.zig
           pop: true
         - include: string-escaped-char
 
   string-escaped-char:
     - match: '\\(\\|[abefnrutv''"]|x\h{2}|u\h{4}|U\h{8}|[0-7]{3})'
-      scope: constant.character.escape.odin
+      scope: constant.character.escape.zig
     - match: \\.
-      scope: invalid.illegal.unknown-escape.odin
+      scope: invalid.illegal.unknown-escape.zig
