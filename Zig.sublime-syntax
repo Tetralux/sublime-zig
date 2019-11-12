@@ -31,6 +31,7 @@ contexts:
     - include: operators
     - include: strings
     - include: string-escaped-char
+    - include: punctuation
 
   comments:
     - include: block-comment
@@ -88,8 +89,6 @@ contexts:
       scope: keyword.type.zig
     - match: \b(and|or)\b
       scope: keyword.control.zig
-    - match: \b(undefined)\b
-      scope: constant.language.zig
     - match: \b(void|c_void)\b
       scope: storage.type.zig
     - match: \.\s*({{identifier}})(?=!\()
@@ -128,16 +127,17 @@ contexts:
 
 
   constants:
-    - match: \b(true|false|null)\b
+    - match: \b(true|false|null|undefined|_)\b
       scope: constant.language.zig
-    - match: (const)\s*({{identifier}})\s*(=)\s*(enum)\s*(\(\s*({{identifier}})\))?\s*\{
+    - match: (const)\s*({{identifier}})\s*(=)\s*(enum)\s*(\(\s*({{identifier}})\))?\s*(\{)
       captures:
         "1": keyword.control.zig
         "2": meta.constant.zig entity.name.type.zig
         "3": keyword.operator.zig
         "4": keyword.control.zig
         "6": storage.type.zig
-    - match: (const)\s*({{identifier}})\s*(=)\s*(struct|union|packed|extern)\s*((\(?)({{identifier}})(\)?))*\s*\{(?!\s*\.)
+        "8": punctuation.bracket.zig
+    - match: (const)\s*({{identifier}})\s*(=)\s*(struct|union|packed|extern)\s*((\(?)({{identifier}})(\)?))*\s*(\{)(?!\s*\.)
       captures:
         "1": keyword.control.zig
         "2": meta.constant.zig entity.name.type.zig
@@ -146,6 +146,7 @@ contexts:
         "6": source.zig
         "7": keyword.type.zig
         "8": source.zig
+        "10": punctuation.bracket.zig
 
   operators:
     - match: (%(\+|-|\*\/)=)|->|&&
@@ -154,11 +155,11 @@ contexts:
       scope: keyword.operator.zig
 
   types:
-    - match: (usize|isize|bool|comptime_int)
+    - match: \b(usize|isize|bool|comptime_int)\b
       scope: storage.type.zig
-    - match: (u|i)[0-9]+
+    - match: \b(u|i)[0-9]+\b
       scope: storage.type.zig
-    - match: (f(32|64))
+    - match: \b(f(16|32|64|128))\b
       scope: storage.type.zig
 
   strings:
@@ -191,3 +192,8 @@ contexts:
       scope: constant.character.escape.zig
     - match: \\.
       scope: invalid.illegal.unknown-escape.zig
+
+  punctuation:
+    - match: '(\{|\}|\(|\)|\[|\]|;|,)'
+      scope: punctuation.zig
+
