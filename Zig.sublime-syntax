@@ -83,7 +83,7 @@ contexts:
       scope: keyword.control.zig
     - match: \b(linksection)\b
       scope: keyword.control.zig
-    - match: \b(try|catch|orelse|unreachable|error|if|else|return|comptime)\b
+    - match: \b(try|catch|orelse|unreachable|noreturn|error|if|else|return|comptime)\b
       scope: keyword.control.zig
     - match: \b(stdcallcc|ccc|nakedcc)\b
       scope: keyword.type.zig
@@ -106,7 +106,40 @@ contexts:
       scope: storage.type.zig
     - match: \b(c_int|c_uint|c_short|c_ushort|c_long|c_ulong)\b
       scope: storage.type.zig
-    - match: (@{{identifier}})
+    - match: "(@{{identifier}})"
+    # - match: "@(addWithOverflow|ArgType|atomicLoad|bitCast|breakpoint)"
+    #   scope: support.function.zig
+    # - match: "@(alignCast|alignOf|cDefine|cImport|cInclude)"
+    #   scope: support.function.zig
+    # - match: "@(cUndef|canImplicitCast|clz|cmpxchgWeak|cmpxchgStrong|compileError)"
+    #   scope: support.function.zig
+    # - match: "@(compileLog|ctz|popCount|divExact|divFloor|divTrunc)"
+    #   scope: support.function.zig
+    # - match: "@(embedFile|export|tagName|TagType|errorName)"
+    #   scope: support.function.zig
+    # - match: "@(errorReturnTrace|fence|fieldParentPtr|field|unionInit)"
+    #   scope: support.function.zig
+    # - match: "@(frameAddress|import|inlineCall|newStackCall|asyncCall|intToPtr|IntType)"
+    #   scope: support.function.zig
+    # - match: "@(maxValue|memberCount|memberName|memberType|as)"
+    #   scope: support.function.zig
+    # - match: "@(memcpy|memset|minValue|mod|mulWithOverflow|splat)"
+    #   scope: support.function.zig
+    # - match: "@(noInlineCall|bitOffsetOf|byteOffsetOf|OpaqueType|panic|ptrCast)"
+    #   scope: support.function.zig
+    # - match: "@(ptrToInt|rem|returnAddress|setCold|Type|shuffle)"
+    #   scope: support.function.zig
+    # - match: "@(setRuntimeSafety|setEvalBranchQuota|setFloatMode)"
+    #   scope: support.function.zig
+    # - match: "@(setGlobalLinkage|setGlobalSection|shlExact|This|hasDecl|hasField)"
+    #   scope: support.function.zig
+    # - match: "@(shlWithOverflow|shrExact|sizeOf|sqrt|byteSwap|subWithOverflow|intCast|floatCast|intToFloat|floatToInt|boolToInt|errSetCast)"
+    #   scope: support.function.zig
+    # - match: "@(truncate|typeId|typeInfo|typeName|typeOf|atomicRmw|bytesToSlice|sliceToBytes)"
+    #   scope: support.function.zig
+    # - match: "@(intToError|errorToInt|intToEnum|enumToInt|setAlignStack|frame|Frame|frameSize|bitReverse|Vector)"
+    #   scope: support.function.zig
+    # - match: "@(sin|cos|exp|exp2|ln|log2|log10|fabs|floor|ceil|trunc|round)"
       scope: support.function.zig
     - match: \b(anyframe)((->)(?=({{identifier}}))?)\b
       captures:
