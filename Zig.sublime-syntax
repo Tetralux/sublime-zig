@@ -75,13 +75,15 @@ contexts:
       scope: keyword.control.zig
     - match: \b(continue|break|switch|for|while)\b
       scope: keyword.control.zig
-    - match: \b(var|const|test|packed|extern|export|pub|defer|errdefer|inline|noinline|align|usingnamespace)\b
+    - match: \b(var|anytype|const|test|packed|extern|export|pub|defer|errdefer|inline|noinline|align|usingnamespace)\b
       scope: keyword.control.zig
     - match: \b(noasync|async|await|cancel|suspend|resume)\b
       scope: keyword.control.zig
     - match: \b(threadlocal)\b
       scope: keyword.control.zig
     - match: \b(linksection)\b
+      scope: keyword.control.zig
+    - match: \b(callconv)\b
       scope: keyword.control.zig
     - match: \b(try|catch|orelse|unreachable|noreturn|error|if|else|return|comptime)\b
       scope: keyword.control.zig
@@ -141,11 +143,11 @@ contexts:
     #   scope: support.function.zig
     # - match: "@(sin|cos|exp|exp2|ln|log2|log10|fabs|floor|ceil|trunc|round)"
       scope: support.function.zig
-    - match: \b(anyframe)((->)(?=({{identifier}}))?)\b
+    - match: \b(anyframe)((->)(?=({{identifier}})))?\b
       captures:
         "1": keyword.control.zig
         "3": keyword.operator.zig
-    - match: \b(anyerror)(!)
+    - match: \b(anyerror)(!)?
       captures:
         "1": keyword.control.zig,
         "2": keyword.operator.zig
