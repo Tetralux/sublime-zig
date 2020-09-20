@@ -96,12 +96,12 @@ contexts:
     - match: \.\s*({{identifier}})(?=!\()
       captures:
         "1": source.zig
-    - match: \b({{identifier}})\s*(:|=)\s*(fn)
+    - match: \b({{identifier}})\s*(=)\s*(fn)
       captures:
         "1": source.zig entity.name.function.zig
         "2": keyword.operator.zig
         "3": storage.type.zig
-    - match: \b({{identifier}})\s*(:|=)
+    - match: \b({{identifier}})\s*(=)
       captures:
         "1": source.zig entity.name.function.zig # should be entity.name.type.zig, but that doesn't show up in CTRL+R...
         "2": keyword.operator.zig
